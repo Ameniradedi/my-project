@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Terrain;
 use Illuminate\Http\Request;
-use App\Models\produit_agricole;
+use Illuminate\Support\Facades\Auth;
 
-class produit_agricoleController extends Controller
+class TerrainController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class produit_agricoleController extends Controller
      */
     public function index()
     {
-        $produit_agricole = produit_agricole::all();
-        return view('produit agricole.index', compact('produit agricole'));
+        $terrains = Terrain::all();
+        return view('terrains.index', compact('terrains'));
     }
 
     /**
@@ -25,7 +26,7 @@ class produit_agricoleController extends Controller
      */
     public function create()
     {
-        return view('produit agricole.create');
+        return view('terrains.create');
     }
 
     /**
@@ -38,18 +39,20 @@ class produit_agricoleController extends Controller
     {
         $request->validate([
             'nom' => 'required',
-            'type' => 'required'
         ]);
 
-        $medicament = new produit_agricole([
+        $terrain = new Terrain([
             'nom' => $request->get('nom'),
-            'description' => $request->get('description'),
+            'espace' => $request->get('espace'),
             'prix' => $request->get('prix'),
-            'num tel' => $request->get('num tel')
+            'adresse' => $request->get('adresse'),
+            'description' => $request->get('description'),
+            'user_id' => Auth::user()->id,
+            "numero_proprietaire" => $request->get('numero_proprietaire'),
 
         ]);
-        $medicament->save();
-        return redirect('/produit agricole')->with('success', 'Le produit agricole a été enregistré!');
+        $terrain->save();
+        return redirect('/terrains')->with('success', 'lterrain a été enregistré!');
     }
 
     /**
@@ -71,8 +74,8 @@ class produit_agricoleController extends Controller
      */
     public function edit($id)
     {
-        $produit_agricole = produit_agricole::find($id);
-        return view('produit agricole.edit', compact('produit agricole'));
+        $terrain = Terrain::find($id);
+        return view('terrains.edit', compact('terrain'));
     }
 
     /**
@@ -86,15 +89,16 @@ class produit_agricoleController extends Controller
     {
         $request->validate([
             'nom' => 'required',
-            'type' => 'required'
         ]);
-        $produit_agricole = produit_agricole::find($id);
-        $produit_agricole->nom = $request->get('nom');
-        $produit_agricole->type = $request->get('type');
-        $produit_agricole->prix= $request->get('prix');
-        $produit_agricole->num_tel = $request->get('num tel');
-        $produit_agricole->save();
-        return redirect('/produit agricole')->with('success', 'Le produit a été modifié!');
+        $terrain = Terrain::find($id);
+        $terrain->nom = $request->get('nom');
+        $terrain->espace = $request->get('espace');
+        $terrain->prix = $request->get('prix');
+        $terrain->adresse = $request->get('adresse');
+        $terrain->description = $request->get('description');
+        $terrain->numero_proprietaire = $request->get('numero_proprietaire');
+        $terrain->save();
+        return redirect('/terrains')->with('success', 'terrain a été modifié!');
     }
 
     /**
@@ -105,8 +109,8 @@ class produit_agricoleController extends Controller
      */
     public function destroy($id)
     {
-        $produit_agricole= produit_agricole::find($id);
-        $produit_agricole->delete();
-        return redirect('/produit agricole')->with('success', 'Le produit a été supprimé!');
+        $terrain = Terrain::find($id);
+        $terrain->delete();
+        return redirect('/terrains')->with('success', 'terrain a été supprimé!');
     }
 }

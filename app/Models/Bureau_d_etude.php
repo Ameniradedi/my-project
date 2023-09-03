@@ -11,8 +11,10 @@ class Bureau_d_etude extends Model
     protected $fillable = [
         "nom",
         "adresse",
-        "adresse_email",
-        "rendez_vous",
-        "tel"
-      ];
+    ];
+
+    public function rendez_vouses()
+    {
+        return $this->hasMany(Rendez_vous::class);
+    }
 }

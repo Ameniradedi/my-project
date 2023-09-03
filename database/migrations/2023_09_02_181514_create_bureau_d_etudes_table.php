@@ -12,14 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bureau_d_etudes', function (Blueprint $table) {
-        $table->increments("id");
-        $table->string("nom");
-        $table->string("adresse");
-        $table->string("adresse_mail");
-        $table->string("rendez_vous");
-        $table->string("tel");
-        $table->string("num tel");
-        $table->timestamps();
+            $table->increments("id");
+            $table->string("nom");
+            $table->string("adresse");
+            $table->integer("user_id");
+            $table->timestamps();
         });
     }
 

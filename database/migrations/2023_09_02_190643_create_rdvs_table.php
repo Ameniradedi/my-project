@@ -11,28 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('terrains', function (Blueprint $table) {
+        Schema::create('rdvs', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("nom");
-            $table->string("espace");
-            $table->string("prix");
-            $table->string("adresse");
-            $table->string("description");
+            $table->integer("bureau_d_etude_id");
             $table->integer("user_id");
-            $table->string("numero_proprietaire");
+            $table->string("date_et_heure");
             $table->timestamps();
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->foreign("bureau_d_etude_id")->references("id")->on("bureau_d_etudes")->onDelete("cascade");
         });
     }
-
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('terrains');
+        Schema::dropIfExists('rdvs');
     }
 };

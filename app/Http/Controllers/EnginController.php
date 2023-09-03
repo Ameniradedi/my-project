@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Engin;
 
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class Engincontroller extends Controller
 {
@@ -15,8 +16,8 @@ class Engincontroller extends Controller
      */
     public function index()
     {
-        $engin = engin::all();
-        return view('engins.index', compact('engin'));
+        $engins = Engin::all();
+        return view('engins.index', compact('engins'));
     }
 
     /**
@@ -39,16 +40,14 @@ class Engincontroller extends Controller
     {
         $request->validate([
             'nom' => 'required',
-            'carecteristique' => 'required'
         ]);
 
         $engin = new Engin([
             'nom' => $request->get('nom'),
-            'carecteristique' => $request->get('carecteristique'),
+            'caracteristique' => $request->get('carecteristique'),
+            'adresse' => $request->get('adresse'),
             'prix' => $request->get('prix'),
-            'disponibilité' => $request->get('disponibilité'),
-            'numéro tel'=> $request->get('numero')
-
+            'user_id' => FacadesAuth::user()->id,
         ]);
         $engin->save();
         return redirect('/engins')->with('success', 'lengin a été enregistré!');
@@ -73,7 +72,7 @@ class Engincontroller extends Controller
      */
     public function edit($id)
     {
-        $engin =Engin::find($id);
+        $engin = Engin::find($id);
         return view('engins.edit', compact('engin'));
     }
 
@@ -88,17 +87,14 @@ class Engincontroller extends Controller
     {
         $request->validate([
             'nom' => 'required',
-            'caracteristique' => 'required'
         ]);
         $engin = Engin::find($id);
         $engin->nom = $request->get('nom');
+        $engin->caracteristique = $request->get('caracteristique');
+        $engin->adresse = $request->get('adresse');
         $engin->prix = $request->get('prix');
-        $engin->carecteristique = $request->get('carecteristique');
-        $engin->disponibilité= $request->get('disponibilité');
-        $engin->description= $request->get('description');
-        $engin->num_tel = $request->get('num tel');
         $engin->save();
-        return redirect('/engin')->with('success', 'engin a été modifié!');
+        return redirect('/engins')->with('success', 'engin a été modifié!');
     }
 
     /**
@@ -109,8 +105,8 @@ class Engincontroller extends Controller
      */
     public function destroy($id)
     {
-        $engin= engin::find($id);
+        $engin = Engin::find($id);
         $engin->delete();
-        return redirect('/engin')->with('success', 'engin a été supprimé!');
+        return redirect('/engins')->with('success', 'engin a été supprimé!');
     }
 }

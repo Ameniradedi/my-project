@@ -5,7 +5,7 @@
   <div class="col-12">
     <div style="width:800px;">
       <h4>
-        <font color="orange"><b>Modification d'un client </b></font>
+        <font color="orange"><b>Modification d'un engin </b></font>
       </h4>
     </div>
     @if ($errors->any())
@@ -20,7 +20,7 @@
     @endif
     <div class="row">
       <div class="col-12">
-        <form name="fclient" method="post" action="{{ route('clients.update', $client->id) }}">
+        <form name="engin" method="post" action="{{ route('engins.update', $engin->id) }}">
           @method('PATCH')
           @csrf
 
@@ -28,13 +28,18 @@
 
             <div class="row">
               <div class="col-md-6 ">
-                <div class="form-group">
+                <div class="nom-group">
                   <label for="nom">Nom:</label>
-                  <input type="text" class="form-control" name="nom" value="{{ $client->nom }}" />
+                  <input type="text" class="form-control" name="nom" value="{{ $engin->nom }}" />
                 </div>
                 <div class="form-group">
-                  <label for="nom">Prenom:</label>
-                  <input type="text" class="form-control" name="prenom" value="{{ $client->prenom }}" />
+                  <label for="caracteristique">caracteristique:</label>
+                  <input type="text" class="form-control" name="caracteristique"
+                    value="{{ $engin->caracteristique }}" />
+                </div>
+                <div class="form-group">
+                  <label for="ville">prix:</label>
+                  <input type="text" class="form-control" name="prix" value="{{ $engin->prix }}" />
                 </div>
 
               </div>
@@ -42,32 +47,16 @@
 
                 <div class="form-group">
                   <label for="adresse">Adresse:</label>
-                  <input type="text" class="form-control" name="adresse" value="{{ $client->adresse }}" />
-                </div>
-
-                <div class="form-group">
-                  <label for="adresse">Email:</label>
-                  <input type="text" class="form-control" name="email" value="{{ $client->email }}" />
-                </div>
-
-
-                <div class="form-group">
-                  <label for="tel">Tel:</label>
                   <table>
                     <tr>
-                      <td><input type="text" class="form-control" name="tel" value="{{ $client->tel }}" /></td>
+                      <td><input type="text" class="form-control" name="adresse" value="{{ $engin->adresse }}" /></td>
                       <td>&nbsp;</td>
                       <td>
-                        <button type="submit" class="btn btn-primary">Modification du client</button>
+                        <button type="submit" class="btn btn-primary">Modification du engin</button>
                       </td>
                     </tr>
                   </table>
                 </div>
-
-
-
-
-
               </div>
             </div>
 

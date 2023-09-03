@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bureau_d_etude;
 use Illuminate\Http\Request;
-use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
 
-class ClientController extends Controller
+class Bureau_d_etudeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $client = Client::all();
-        return view('clients.index', compact('clients'));
+        $bureau_d_etudes = Bureau_d_etude::all();
+        return view('bureau_d_etudes.index', compact('bureau_d_etudes'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        return view('bureau_d_etudes.create');
     }
 
     /**
@@ -38,19 +39,20 @@ class ClientController extends Controller
     {
         $request->validate([
             'nom' => 'required',
-            'prenom' => 'required'
         ]);
 
-        $client = new Client([
+        $bureau_d_etude = new Bureau_d_etude([
             'nom' => $request->get('nom'),
-            'prenom' => $request->get('prenom'),
+            'espace' => $request->get('espace'),
+            'prix' => $request->get('prix'),
             'adresse' => $request->get('adresse'),
-            'email' => $request->get('email'),
-            'tel' => $request->get('tel')
+            'description' => $request->get('description'),
+            'user_id' => Auth::user()->id,
+            "numero_proprietaire" => $request->get('numero_proprietaire'),
 
         ]);
-        $client->save();
-        return redirect('/client')->with('success', 'Le client a été enregistré!');
+        $bureau_d_etude->save();
+        return redirect('/bureau_d_etudes')->with('success', 'lbureau_d_etude a été enregistré!');
     }
 
     /**
@@ -61,9 +63,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
+        //
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
@@ -73,9 +74,10 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $client = Client::find($id);
-        return view('client.edit', compact('client'));
+        $bureau_d_etude = Bureau_d_etude::find($id);
+        return view('bureau_d_etudes.edit', compact('bureau_d_etude'));
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -87,16 +89,16 @@ class ClientController extends Controller
     {
         $request->validate([
             'nom' => 'required',
-            'prenom' => 'required'
         ]);
-        $client = client::find($id);
-        $client->nom = $request->get('nom');
-        $client->prenom = $request->get('prenom');
-        $client->adresse = $request->get('adresse');
-        $client->email = $request->get('email');
-        $client->tel = $request->get('tel');
-        $client->save();
-        return redirect('/patients')->with('success', 'Le patient a été modifié!');
+        $bureau_d_etude = Bureau_d_etude::find($id);
+        $bureau_d_etude->nom = $request->get('nom');
+        $bureau_d_etude->espace = $request->get('espace');
+        $bureau_d_etude->prix = $request->get('prix');
+        $bureau_d_etude->adresse = $request->get('adresse');
+        $bureau_d_etude->description = $request->get('description');
+        $bureau_d_etude->numero_proprietaire = $request->get('numero_proprietaire');
+        $bureau_d_etude->save();
+        return redirect('/bureau_d_etudes')->with('success', 'bureau_d_etude a été modifié!');
     }
 
     /**
@@ -107,8 +109,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $patient = Client::find($id);
-        $patient->delete();
-        return redirect('/clients')->with('success', 'Le client a été supprimé!');
+        $bureau_d_etude = Bureau_d_etude::find($id);
+        $bureau_d_etude->delete();
+        return redirect('/bureau_d_etudes')->with('success', 'bureau_d_etude a été supprimé!');
     }
 }

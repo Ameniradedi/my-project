@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('produit_agricoles', function (Blueprint $table) {
             $table->increments("id");
             $table->string("nom");
-            $table->string("prenom");
-            $table->string("addresse_email");
+            $table->string("prix");
+            $table->string("adresse");
+            $table->integer("user_id");
             $table->timestamps();
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('produit_agricoles');
     }
 };

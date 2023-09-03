@@ -5,18 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class terrain extends Model
+class Terrain extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "nomp",
+        "nom",
         "espace",
-        "nump",
-        "description",
         "prix",
-        "adresse_mailp",
-        "localisation"
-    
+        "adresse",
+        "description",
+        "user_id",
+        "numero_proprietaire",
     ];
+
+    public function user()
+    {
+        return $this->belongTo(User::class);
+    }
 }

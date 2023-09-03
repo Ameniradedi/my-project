@@ -5,17 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class engin extends Model
+class Engin extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         "nom",
+        "caracteristique",
+        "adresse",
         "prix",
-        "disponibilité",
-        "description",
-        "num tel",
-        "carecteristique ",
-       
+        "user_id",
+
     ];
+
+    public function user()
+    {
+        return $this->belongTo(User::class);
+    }
 }

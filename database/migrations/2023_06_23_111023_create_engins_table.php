@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-            Schema::create('engin', function (Blueprint $table) {
-                $table->increments("id");
-                $table->string("nom");
-                $table->string("prix");
-                $table->string("adresse_mail");
-                $table->string("disponibilité");
-                $table->string("description");
-                $table->string("localisation");
-                $table->timestamps();
-            });
-        }
-    
+        Schema::create('engins', function (Blueprint $table) {
+            $table->increments("id");
+            $table->string("nom");
+            $table->string("caracteristique");
+            $table->string("adresse");
+            $table->string("prix");
+            $table->integer("user_id");
+            $table->timestamps();
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+        });
+    }
+
 
     /**
      * Reverse the migrations.
