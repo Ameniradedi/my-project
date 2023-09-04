@@ -31,6 +31,6 @@ Route::get('/register', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/engins', App\Http\Controllers\EnginController::class);
 Route::resource('/terrains', App\Http\Controllers\TerrainController::class);
-Route::resource('/rendez vous', App\Http\Controllers\Rendez_vousController::class);
-Route::resource('/produit agricole', App\Http\Controllers\Produit_agricoleController::class);
-Route::resource('/bureau_d_etude', App\Http\Controllers\Bureau_d_etudeController::class);
+Route::resource('/rdvs', App\Http\Controllers\RdvController::class);
+Route::resource('/produit_agricoles', App\Http\Controllers\Produit_agricoleController::class);
+Route::resource('/bureau_d_etudes', App\Http\Controllers\Bureau_d_etudeController::class);

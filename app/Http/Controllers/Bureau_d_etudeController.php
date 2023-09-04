@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Bureau_d_etude;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class Bureau_d_etudeController extends Controller
 {
@@ -43,12 +42,7 @@ class Bureau_d_etudeController extends Controller
 
         $bureau_d_etude = new Bureau_d_etude([
             'nom' => $request->get('nom'),
-            'espace' => $request->get('espace'),
-            'prix' => $request->get('prix'),
             'adresse' => $request->get('adresse'),
-            'description' => $request->get('description'),
-            'user_id' => Auth::user()->id,
-            "numero_proprietaire" => $request->get('numero_proprietaire'),
 
         ]);
         $bureau_d_etude->save();
@@ -92,11 +86,7 @@ class Bureau_d_etudeController extends Controller
         ]);
         $bureau_d_etude = Bureau_d_etude::find($id);
         $bureau_d_etude->nom = $request->get('nom');
-        $bureau_d_etude->espace = $request->get('espace');
-        $bureau_d_etude->prix = $request->get('prix');
         $bureau_d_etude->adresse = $request->get('adresse');
-        $bureau_d_etude->description = $request->get('description');
-        $bureau_d_etude->numero_proprietaire = $request->get('numero_proprietaire');
         $bureau_d_etude->save();
         return redirect('/bureau_d_etudes')->with('success', 'bureau_d_etude a été modifié!');
     }

@@ -8,7 +8,7 @@
         </h4>
     </div>
     <div class="col-md-12">
-        <a style="margin: 19px;" href="{{ route('produit_agricoles.create')}}" class="btn btn-primary"><b>Ajouter un
+        <a style="margin: 19px;" href="{{ route('bureau_d_etudes.create')}}" class="btn btn-primary"><b>Ajouter un
                 produit agricole</b></a>
     </div>
     <div class="col-md-12">
@@ -17,21 +17,20 @@
                 <thead>
                     <tr>
                         <th style="background-color:#10b981;">
-                            <font color="white"><b>ID produit agricole</b></font>
+                            <font color="white"><b>ID Bureau d'etude</b></font>
                         </th>
                         <th style="background-color:#10b981;">
                             <font color="white"><b>Nom</b></font>
                         </th>
                         <th style="background-color:#10b981;">
+                            <font color="white"><b></b></font>
+                        </th>
+                        <th style="background-color:#10b981;">
+                            <font color="white"><b></b></font>
+                        </th>
+                        <th style="background-color:#10b981;">
                             <font color="white"><b>adresse</b></font>
                         </th>
-                        <th style="background-color:#10b981;">
-                            <font color="white"><b>prix</b></font>
-                        </th>
-                        <th style="background-color:#10b981;">
-                            <font color="white"><b>user id</b></font>
-                        </th>
-
                         <th style="background-color:#10b981;text-align:center;" colspan="4">
                             <font color="white"><b>Actions</b></font>
                         </th>
@@ -39,19 +38,19 @@
                 </thead>
 
                 <tbody>
-                    @foreach($produit_agricoles as $produit_agricole)
+                    @foreach($bureau_d_etudes as $bureau_d_etude)
                     <tr>
-                        <td style="vertical-align:middle;">{{$produit_agricole->id}}</td>
-                        <td style="vertical-align:middle;">{{$produit_agricole->nom}}</td>
-                        <td style="vertical-align:middle;">{{$produit_agricole->adresse}}</td>
-                        <td style="vertical-align:middle;">{{$produit_agricole->prix}}</td>
-                        <td style="vertical-align:middle;">{{$produit_agricole->user_id}}</td>
+                        <td style="vertical-align:middle;">{{$bureau_d_etude->id}}</td>
+                        <td style="vertical-align:middle;">{{$bureau_d_etude->nom}}</td>
+                        <td style="vertical-align:middle;"></td>
+                        <td style="vertical-align:middle;"></td>
+                        <td style="vertical-align:middle;">{{$bureau_d_etude->adresse}}</td>
                         <td colspan="2"></td>
                         <td>
-                            <a href="{{ route('produit_agricoles.edit',$produit_agricole->id)}}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('bureau_d_etudes.edit',$bureau_d_etude->id)}}" class="btn btn-primary">Edit</a>
                         </td>
                         <td>
-                            <form action="{{ route('produit_agricoles.destroy', $produit_agricole->id)}}" method="post">
+                            <form action="{{ route('bureau_d_etudes.destroy', $bureau_d_etude->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">X</button>
@@ -72,5 +71,6 @@
             </div>
             @endif
         </div>
+
 
         @endsection
