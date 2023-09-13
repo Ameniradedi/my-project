@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-12">
     <h4>
-      <font color="#10b981"><b>Gestion des terrain</b></font>
+      <font color="#10b981"><b>Gestion des terrains</b></font>
     </h4>
   </div>
   <div class="col-md-12">
@@ -40,12 +40,8 @@
             <th style="background-color:#10b981;text-align:center;" colspan="4">
               <font color="white"><b>action</b></font>
             </th>
-
-
-
           </tr>
         </thead>
-
         <tbody>
           @foreach($terrains as $terrain)
           <tr>

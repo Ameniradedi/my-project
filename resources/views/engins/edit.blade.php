@@ -5,7 +5,7 @@
   <div class="col-12">
     <div style="width:800px;">
       <h4>
-        <font color="orange"><b>Modification d'un engin </b></font>
+        <font color="#10b981"><b>Modification d'un engin </b></font>
       </h4>
     </div>
     @if ($errors->any())
@@ -24,42 +24,36 @@
           @method('PATCH')
           @csrf
 
-          <div class="card">
-
-            <div class="row">
-              <div class="col-md-6 ">
-                <div class="nom-group">
-                  <label for="nom">Nom:</label>
-                  <input type="text" class="form-control" name="nom" value="{{ $engin->nom }}" />
-                </div>
-                <div class="form-group">
-                  <label for="caracteristique">caracteristique:</label>
-                  <input type="text" class="form-control" name="caracteristique"
-                    value="{{ $engin->caracteristique }}" />
-                </div>
-                <div class="form-group">
-                  <label for="ville">prix:</label>
-                  <input type="text" class="form-control" name="prix" value="{{ $engin->prix }}" />
-                </div>
-
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label for="client">Nom:</label>
+                <input type="text" class="form-control" name="nom" value="{{ $engin->nom }}" />
               </div>
-              <div class="col-md-6 ">
+              <div class="form-group">
+                <label for="client">caracteristique:</label>
+                <input type="text" class="form-control" name="caracteristique" value="{{ $engin->caracteristique }}" />
+              </div>
 
-                <div class="form-group">
-                  <label for="adresse">Adresse:</label>
-                  <table>
-                    <tr>
-                      <td><input type="text" class="form-control" name="adresse" value="{{ $engin->adresse }}" /></td>
-                      <td>&nbsp;</td>
-                      <td>
-                        <button type="submit" class="btn btn-primary">Modification du engin</button>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+            </div>
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label for="prix">prix:</label>
+                <input type="text" class="form-control" name="prix" value="{{ $engin->prix }}" />
+              </div>
+              <div class="form-group">
+                <label for="ville">Adresse:</label>
+                <input type="text" class="form-control" name="adresse" value="{{ $engin->adresse }}" />
               </div>
             </div>
+          </div>
 
+          <div class="row">
+            <div class="col-md-6 mt-3">
+              <div class="card">
+                <button type="submit" class="btn btn-primary">Ajouter l'engin</button>
+              </div>
+            </div>
           </div>
         </form>
       </div>

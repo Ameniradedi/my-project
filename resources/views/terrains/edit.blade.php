@@ -5,7 +5,7 @@
   <div class="col-12">
     <div style="width:800px;">
       <h4>
-        <font color="orange"><b>Modification terrain </b></font>
+        <font color="#10b981"><b>Modification terrain </b></font>
       </h4>
     </div>
     @if ($errors->any())
@@ -20,39 +20,56 @@
     @endif
     <div class="row">
       <div class="col-12">
-        <form name="terrain" method="post" action="{{ route('terrain.update', $terrain->id) }}">
+        <form name="terrain" method="post" action="{{ route('terrains.update', $terrain->id) }}">
           @method('PATCH')
           @csrf
 
-          <div class="card">
-
-            <div class="row">
-              <div class="col-md-6 ">
-                <div class="form-group">
-                  <label for="nom">Nom:</label>
-                  <input type="text" class="form-control" name="nom" value="{{$terrain ->nom }}" />
-                </div>
-                <div class="form-group">
-                  <label for="nom">espacee:</label>
-                  <input type="text" class="form-control" name="espace" value="{{ $terrain->espace }}" />
-                </div>
-                <div class="form-group">
-                  <label for="ville">prix:</label>
-                  <input type="text" class="form-control" name="prix" value="{{ $terrain->prix}}" />
-                </div>
-
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label for="client">Nom:</label>
+                <input type="text" class="form-control" name="nom" value="{{ $terrain->nom }}" />
               </div>
-              <div class="col-md-6 ">
+              <div class="form-group">
+                <label for="client">Numero proprietaire:</label>
+                <input type="text" class="form-control" name="numero_proprietaire"
+                  value="{{ $terrain->numero_proprietaire }}" />
+              </div>
+              <div class="form-group">
+                <label for="client">espace:</label>
+                <input type="text" class="form-control" name="espace" value="{{ $terrain->espace }}" />
+              </div>
+            </div>
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <label for="ville">prix:</label>
+                <input type="text" class="form-control" name="prix" value="{{ $terrain->prix }}" />
+              </div>
+              <div class="form-group">
+                <label for="adresse">Adresse:</label>
+                <input type="text" class="form-control" name="adresse" value="{{ $terrain->adresse }}" />
+              </div>
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" name="description" value="{{ $terrain->description }}" />
+              </div>
+            </div>
+          </div>
 
-                <div class="form-group">
-                  <label for="tel">Form:</label>
-                  <table>
-                    <tr>
-                      <td><input type="text" class="form-control" name="forme" value="{{ $terrain->forme }}" /></td>
-                      <td>&nbsp;</td>
-                      <td>
-                        <button type="submit" class="btn btn-primary">Modification de terrain</button>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
+          <div class="row">
+            <div class="col-md-12 py-4">
+              <div class="card border-0">
+                <button type="submit" class="btn btn-primary" style="max-width: 200px;">Ajouter le terrain</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+@endsection

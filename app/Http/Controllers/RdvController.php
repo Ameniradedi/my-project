@@ -16,7 +16,14 @@ class RdvController extends Controller
      */
     public function index()
     {
-        $rdvs = Rdv::all();
+        $rdvs = Rdv::join('users', 'users.id', '=', 'rdvs.user_id')
+            ->join('bureau_d_etudes', 'bureau_d_etudes.id', '=', 'rdvs.bureau_d_etude_id')
+            ->get([
+                'rdvs.id',
+                'rdvs.date_et_heure',
+                'bureau_d_etudes.nom AS bureau_d_etude_name',
+                'users.name AS user_name'
+            ]);
         return view('rdvs.index', compact('rdvs'));
     }
 

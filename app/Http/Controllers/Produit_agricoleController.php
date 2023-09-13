@@ -15,7 +15,14 @@ class Produit_agricoleController extends Controller
      */
     public function index()
     {
-        $produit_agricoles = Produit_agricole::all();
+        $produit_agricoles = Produit_agricole::join('users', 'users.id', '=', 'produit_agricoles.user_id')
+            ->get([
+                "produit_agricoles.id",
+                "produit_agricoles.nom",
+                "produit_agricoles.adresse",
+                "produit_agricoles.prix",
+                'users.name AS user_name',
+            ]);
         return view('produit_agricoles.index', compact('produit_agricoles'));
     }
 
